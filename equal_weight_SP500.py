@@ -11,7 +11,7 @@ def split_tickers(list_tickers, n):
 
 
 # Create csv object using a csv file
-stocks = pd.read_csv('starter_stuff/S&P500_Holdings.csv')
+stocks = pd.read_csv('S&P500_Holdings.csv')
 
 # Create a data frame with the proper column names using a list and sending to data frame call
 my_cols = ['Tickers', 'Stock Price', 'Market Capitalization', 'Number of Shares to Buy']
