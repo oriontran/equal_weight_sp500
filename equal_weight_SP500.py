@@ -7,11 +7,21 @@ IEX_CLOUD_API_TOKEN = 'Tpk_059b97af715d417d9f49f50b51b1c448'
 def split_tickers(list_tickers, n):
     chunks = []
     for j in range(0, len(list_tickers), n):
-        yield list_tickers[j:j + 100]
+        yield list_tickers[j:j + n]
+
+
+def port_input():
+    while True:
+        try:
+            size = float(input("What is the value of your portfolio: "))
+            break
+        except ValueError:
+            print("Invalid number. Please try again.")
+    return size
 
 
 # Create csv object using a csv file
-stocks = pd.read_csv('S&P500_Holdings.csv')
+stocks = pd.read_csv('starter_stuff/S&P500_Holdings.csv')
 
 # Create a data frame with the proper column names using a list and sending to data frame call
 my_cols = ['Tickers', 'Stock Price', 'Market Capitalization', 'Number of Shares to Buy']
@@ -50,12 +60,7 @@ for chunk in ticker_chunks:
         )
 
 # Acquire size of portfolio
-while True:
-    try:
-        portfolio_size = float(input("What is the value of your portfolio: "))
-        break
-    except ValueError:
-        print("Invalid number. Please try again.")
+portfolio_size = port_input()
 
 # Determine size of position and corresponding number of shares for each then set row entry to that value
 for i in range(len(final_data_frame)):
